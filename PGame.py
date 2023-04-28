@@ -1,6 +1,7 @@
 import sys
 import subprocess
 import time
+import random
 
 try:
     from termcolor import colored
@@ -97,21 +98,22 @@ lessons = [
 
 def ask_question(question, index):
     print(colored(f"\nQuestion {index + 1}: {question['text']}", "red"))
-    for i, option in enumerate(question["options"]):
+    options = random.sample(question["options"], len(question["options"]))
+    for i, option in enumerate(options):
         print(colored(f"{i + 1}. {option}", "red"))
     attempts = 0
     while attempts < 3:
         try:
             answer = int(input("Enter the number of your choice: ")) - 1
-            if answer == question["answer"]:
+            if options[answer] == question["options"][question["answer"]]:
                 print(colored("Correct!", "green"))
                 return 2
             else:
                 attempts += 1
                 print(colored("Incorrect, try again.", "yellow"))
-        except ValueError:
-            print(colored("Invalid input, try again.", "yellow"))
+        except (ValueError, IndexError):
             attempts += 1
+            print(colored("Invalid input, try again.", "yellow"))
     print(colored("Out of attempts, moving to the next question.", "yellow"))
     return 0
 
