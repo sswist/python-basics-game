@@ -14,7 +14,8 @@ Each lesson includes a brief explanation of the topic and three multiple-choice 
 To play the game, make sure you have Python 3 installed on your system. You can download Python from the official website: https://www.python.org/downloads/
 
 Once you have installed Python, you will need to install the `termcolor` package. You can install it using pip:
-pip install termcolor
+
+`pip install termcolor`
 
 
 ## How to Play
